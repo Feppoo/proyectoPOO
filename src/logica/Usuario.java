@@ -7,6 +7,7 @@ public class Usuario {
 	private String nombre;
 	private String tel;
 	private String correo;
+	
 	private List<Prestamo> prestamos = new ArrayList<>();
 	
 	public Usuario(String nombre, String tel, String correo) {
@@ -14,21 +15,21 @@ public class Usuario {
 		this.tel = tel;
 		this.correo = correo;
 	}
+	/* Agrega un préstamo a la lista de préstamos. Verifica primero que no exista en dicha
+	 * lista.
+	 * Retorna True si logra incluirlo, False si no puede.
+	 * */
 	public boolean agregarPrestamo(Prestamo prestamo) {
-		for (Prestamo actual:prestamos) {
-			if (actual.equals(prestamo)) {
-				return false;
-			}
+		if (prestamos.contains(prestamo)) {
+			return false;
 		}
 		return prestamos.add(prestamo);
 	}
+	/* Borra un préstamo de la lista de préstamos. Verifica primero que exista en la lista.
+	 * Retorna True si puede borrarlo, False si no puede.
+	 * */
 	public boolean borrarPrestamo(Prestamo prestamo) {
-		for (Prestamo actual:prestamos) {
-			if (actual.equals(prestamo)) {
-				return prestamos.remove(prestamo);
-			}
-		}
-		return false;
+		return prestamos.remove(prestamo);
 	}
 	public String getNombre() {
 		return nombre;
