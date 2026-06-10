@@ -20,6 +20,17 @@ public class Controladora {
 	private List<Categoria> listCateg = new ArrayList<>();
 	private List<Tipo> listTipos = new ArrayList<>();
 	
-	
-	
+	public void usuarioCrear(String nombre, String tel, String correo) {
+		Usuario usuarioNuevo = new Usuario(nombre, tel, correo);
+		mapUsuarios.put(tel, usuarioNuevo);
+	}
+	public Usuario usuarioConsultar(String tel) {
+		return mapUsuarios.get(tel);
+	}
+	public void usuarioModificar(String tel, Usuario actualizado) {
+		mapUsuarios.put(tel, actualizado);
+	}
+	public void usuarioBorrar(String tel) {
+		mapUsuarios.remove(tel);
+	}
 }
