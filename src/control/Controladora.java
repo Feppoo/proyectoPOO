@@ -21,8 +21,8 @@ public class Controladora {
 	private List<Tipo> listTipos = new ArrayList<>();
 	
 	public void usuarioCrear(String nombre, String tel, String correo) {
-		Usuario usuarioNuevo = new Usuario(nombre, tel, correo);
-		mapUsuarios.put(tel, usuarioNuevo);
+		Usuario nuevo = new Usuario(nombre, tel, correo);
+		mapUsuarios.put(tel, nuevo);
 	}
 	public Usuario usuarioConsultar(String tel) {
 		return mapUsuarios.get(tel);
@@ -32,5 +32,22 @@ public class Controladora {
 	}
 	public void usuarioBorrar(String tel) {
 		mapUsuarios.remove(tel);
+	}
+	public void itemCrear(int codigo, String nombre, String descripcion) {
+		Item nuevo = new Item(codigo, nombre, descripcion);
+		mapItems.put(codigo, nuevo);
+	}
+	public Item itemConsultar(int codigo) {
+		return mapItems.get(codigo);
+	}
+	public void itemModificar(int codigo, Item actualizado) {
+		mapItems.put(codigo, actualizado);
+	}
+	public void itemBorrar(int codigo) {
+		mapItems.remove(codigo);
+	}
+	public void categoriaCrear(String nombre) {
+		Categoria nueva = new Categoria(nombre);
+		listCateg.add(nueva);
 	}
 }
