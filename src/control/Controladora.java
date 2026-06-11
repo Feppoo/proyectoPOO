@@ -1,10 +1,12 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import logica.Alerta;
 import logica.Categoria;
 import logica.Item;
 import logica.Prestamo;
@@ -84,8 +86,55 @@ public class Controladora {
 			}
 		}
 	}
-	public void prestamoCrear() {
+	public void prestamoCrear(Usuario usuario, Alerta alerta) {
 		int id = ++contadorPrestamos;
+		Prestamo nuevo = new Prestamo(id, usuario, alerta);
+		mapPrestamos.put(id, nuevo);
+	}
+	public boolean prestamoAgregarItem(int id, Item item) {
+		Prestamo p = mapPrestamos.get(id);
+		return p.agregarItem(item);
+	}
+	public boolean prestamoEliminarItem(int id, Item item) {
+		Prestamo p = mapPrestamos.get(id);
+		return p.eliminarItem(item);
+	}
+	public boolean prestamoRetornarItem(int id, Item item) {
+		Prestamo p = mapPrestamos.get(id);
+		return p.eliminarItem(item);
+	}
+	public void prestamoFinalizar(int id) {
+		Prestamo p = mapPrestamos.get(id);
+		for (Item actual:p.getPrestado()) {
+			prestamoRetornarItem(id, actual);
+		}
+		mapPrestamos.remove(id);
+	}
+	/* Retorna un mapa: Usuario con préstamo activo ----> La lista de items.
+	 * */
+	public Map<Usuario,List<Item>> reporteUsuario() {
+		Map<Usuario,List<Item>> mapa = new HashMap<>();
+		for (Prestamo actual:mapPrestamos.values()) {
+			mapa.put(actual.getUsuario(), actual.getPrestado());
+		}
+		return mapa;
+	}
+	/* Retorna una lista ordenada alfabéticamente: Item
+	 * */
+	public List<Item> reporteItems() {
+		List<Item> lista = new ArrayList<>();
+		for (Item actual:mapItems.values()) {
+			lista.add(actual);
+		}
+		lista.sort(Comparator.comparing(Item::getNombre));
+		return lista;
+	}
+	public List<Item> reporteCategoria() {
+		List<Item> lista = new ArrayList<>();
+		for (Item actual:mapItems.values()) {
+			lista.add(actual);
+		}
 		
 	}
+	
 }

@@ -28,6 +28,9 @@ public class Prestamo {
 	public void setAlerta(Alerta alerta) {
 		this.alerta = alerta;
 	}
+	public List<Item> getPrestado() {
+		return prestado;
+	}
 	public int getId() {
 		return id;
 	}
