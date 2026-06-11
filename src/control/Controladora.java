@@ -33,7 +33,8 @@ public class Controladora {
 	public void usuarioBorrar(String tel) {
 		mapUsuarios.remove(tel);
 	}
-	public void itemCrear(int codigo, String nombre, String descripcion) {
+	public void itemCrear(String nombre, String descripcion) {
+		int codigo = ++contadorItems;
 		Item nuevo = new Item(codigo, nombre, descripcion);
 		mapItems.put(codigo, nuevo);
 	}
@@ -49,5 +50,42 @@ public class Controladora {
 	public void categoriaCrear(String nombre) {
 		Categoria nueva = new Categoria(nombre);
 		listCateg.add(nueva);
+	}
+	
+	public boolean categoriaConsultar(String nombre) {
+		return listCateg.contains(new Categoria(nombre));
+	}
+	public void cateogriaModificar(String nombre, String nuevo) {
+		categoriaBorrar(nombre);
+		categoriaCrear(nuevo); 
+	}
+	public void categoriaBorrar(String nombre) {
+		for (Categoria actual: listCateg) {
+			if (actual.getNombre().equals(nombre)) {
+				listCateg.remove(actual);
+			}
+		}	
+	}
+	public void tipoCrear(String nombre) {
+		Tipo nuevo = new Tipo(nombre);
+		listTipos.add(nuevo);
+	}
+	public boolean tipoConsultar(String nombre) {
+		return listTipos.contains(new Tipo(nombre));
+	}
+	public void tipoModificar(String nombre, String nuevo) {
+		tipoBorrar(nombre);
+		tipoCrear(nuevo);
+	}
+	public void tipoBorrar(String nombre) {
+		for (Tipo actual:listTipos) {
+			if (actual.getNombre().equals(nombre)) {
+				listTipos.remove(actual);
+			}
+		}
+	}
+	public void prestamoCrear() {
+		int id = ++contadorPrestamos;
+		
 	}
 }
