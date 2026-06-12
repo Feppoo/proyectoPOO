@@ -35,9 +35,9 @@ public class Controladora {
 	public void usuarioBorrar(String tel) {
 		mapUsuarios.remove(tel);
 	}
-	public void itemCrear(String nombre, String descripcion) {
+	public void itemCrear(String nombre, String descripcion, Tipo tipo) {
 		int codigo = ++contadorItems;
-		Item nuevo = new Item(codigo, nombre, descripcion);
+		Item nuevo = new Item(codigo, nombre, descripcion, tipo);
 		mapItems.put(codigo, nuevo);
 	}
 	public Item itemConsultar(int codigo) {
@@ -129,12 +129,46 @@ public class Controladora {
 		lista.sort(Comparator.comparing(Item::getNombre));
 		return lista;
 	}
-	public List<Item> reporteCategoria() {
-		List<Item> lista = new ArrayList<>();
-		for (Item actual:mapItems.values()) {
-			lista.add(actual);
+	/* Retorna un mapa: Categoría -----> Lista de items que pertenecen a ella.
+	 * */
+	public Map<Categoria,List<Item>> reporteCategoria() {
+		Map<Categoria,List<Item>> mapa = new HashMap<>();
+		List<Item> itemTemp = new ArrayList<Item>();
+		//Primero nos encargamos de los que no tienen categoría
+		Categoria sinCateg = new Categoria("Sin Categoría");
+		for (Item x:mapItems.values()) {
+			if(x.getCategorias().isEmpty()) {
+				itemTemp.add(x);
+			}
 		}
-		
+		mapa.put(sinCateg, itemTemp);
+		//Ahora sigue el resto:
+		for (Categoria x: listCateg) {
+			mapa.put(x,x.getItems());
+		}
+		return mapa;
+	}
+	public Map<Tipo, List<Item>> reporteTipo() {
+		Map<Tipo,List<Item>> mapa = new HashMap<>();
+		for (Tipo x: listTipos) {
+			mapa.put(x,x.getItems());
+		}
+		return mapa;
+	}
+	public Map<String, Usuario> getMapUsuarios() {
+		return mapUsuarios;
+	}
+	public Map<Integer, Item> getMapItems() {
+		return mapItems;
+	}
+	public Map<Integer, Prestamo> getMapPrestamos() {
+		return mapPrestamos;
+	}
+	public List<Categoria> getListCateg() {
+		return listCateg;
+	}
+	public List<Tipo> getListTipos() {
+		return listTipos;
 	}
 	
 }

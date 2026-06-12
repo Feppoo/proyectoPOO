@@ -13,10 +13,11 @@ public class Item {
 	private Prestamo prestamo = null;
 	private Tipo tipo = null;
 	
-	public Item(int codigo, String nombre, String descripcion) {
+	public Item(int codigo, String nombre, String descripcion, Tipo tipo) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		this.tipo = tipo;
 		enPrestamo = false;
 	}
 	/* Agrega una categoría a la lista de categorías. Veifica primero si existe en la lista.
@@ -27,6 +28,9 @@ public class Item {
 			return false;
 		}
 		return categorias.add(categoria);
+	}
+	public List<Categoria> getCategorias() {
+		return categorias;
 	}
 	/* Borra una categoría existente de la lista de categorías. Primero verifica que
 	 * exista para poder borrarla.
