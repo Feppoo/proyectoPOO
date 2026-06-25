@@ -1,5 +1,11 @@
 package control;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -13,9 +19,13 @@ import logica.Prestamo;
 import logica.Tipo;
 import logica.Usuario;
 
-public class Controladora {
-	private static int contadorItems = 0;
-	private static int contadorPrestamos = 0;
+public class Controladora implements Serializable{
+	/* Según leí, lo siguiente es para no leer accidentalmente objetos de 
+	clases con números distintos de versión.
+	*/
+	private static final long serialVersionUID = 1L;
+	private int contadorItems = 0; //Lleva el serial de los items
+	private int contadorPrestamos = 0;//Leva el seria de los préstamos
 	private Map<String,Usuario> mapUsuarios = new HashMap<>();
 	private Map<Integer,Item> mapItems = new HashMap<>();
 	private Map<Integer,Prestamo> mapPrestamos = new HashMap<>();
@@ -170,5 +180,20 @@ public class Controladora {
 	public List<Tipo> getListTipos() {
 		return listTipos;
 	}
-	
+
+	public static void guardarDatos(Controladora controladora) throws IOException {
+		FileOutputStream file = new FileOutputStream("AppPrestamos.dat");
+		ObjectOutputStream stream = new ObjectOutputStream(file);
+		stream.writeObject(controladora);
+		stream.close();
+		file.close();
+	}
+	public static Controladora cargarDatos() throws IOException, ClassNotFoundException {
+		FileInputStream file = new FileInputStream("AppPrestamos.dat");
+		ObjectInputStream stream = new ObjectInputStream(file);
+		Controladora controladora = (Controladora) stream.readObject();
+		stream.close();
+		file.close();
+		return controladora;
+	}
 }

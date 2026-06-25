@@ -1,9 +1,12 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Categoria {
+public class Categoria implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	private String nombre;
 	
 	private List<Item> items = new ArrayList<>();

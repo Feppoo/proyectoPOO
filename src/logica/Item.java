@@ -1,17 +1,19 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item {
+public class Item implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int codigo;
 	private String nombre;
 	private String descripcion;
 	private boolean enPrestamo;
 	
 	private List<Categoria> categorias = new ArrayList<>();
-	private Prestamo prestamo = null;
-	private Tipo tipo = null;
+	private Prestamo prestamo;
+	private Tipo tipo;
 	
 	public Item(int codigo, String nombre, String descripcion, Tipo tipo) {
 		this.codigo = codigo;

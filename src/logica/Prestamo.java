@@ -1,14 +1,17 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Prestamo {
+public class Prestamo implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	
-	private Usuario usuario = null;
+	private Usuario usuario;
 	private List<Item> prestado = new ArrayList<>(); 
-	private Alerta alerta = null;
+	private Alerta alerta;
 	
 	public Prestamo(int id, Usuario usuario, Alerta alerta) {
 		this.id = id;
