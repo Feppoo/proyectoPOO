@@ -25,7 +25,7 @@ public class Controladora implements Serializable{
 	*/
 	private static final long serialVersionUID = 1L;
 	private int contadorItems = 0; //Lleva el serial de los items
-	private int contadorPrestamos = 0;//Leva el seria de los préstamos
+	private int contadorPrestamos = 0;//Lleva el serial de los préstamos
 	private Map<String,Usuario> mapUsuarios = new HashMap<>();
 	private Map<Integer,Item> mapItems = new HashMap<>();
 	private Map<Integer,Prestamo> mapPrestamos = new HashMap<>();
