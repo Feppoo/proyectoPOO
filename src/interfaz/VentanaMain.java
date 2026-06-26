@@ -39,6 +39,8 @@ public class VentanaMain {
 	private JTable tableReportesTipo;
 	private JTextField textField;
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	private JButton btnFinPres;
+	private JCheckBox chckbxFinPres;
 
 	/**
 	 * Launch the application.
@@ -133,7 +135,7 @@ public class VentanaMain {
 		
 		JTabbedPane tabPrestamos = new JTabbedPane(JTabbedPane.TOP);
 		panelPrestamos.add(tabPrestamos, BorderLayout.CENTER);
-		
+
 		JPanel panPrestamosCrearPrestamo = new JPanel();
 		tabPrestamos.addTab("Crear préstamo", null, panPrestamosCrearPrestamo, null);
 		panPrestamosCrearPrestamo.setLayout(null);
@@ -155,7 +157,7 @@ public class VentanaMain {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(457, 261, 107, 33);
+		btnNewButton.setBounds(439, 261, 125, 33);
 		panPrestamosCrearPrestamo.add(btnNewButton);
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
@@ -181,7 +183,7 @@ public class VentanaMain {
 		lblNewLabel_6.setBounds(10, 139, 79, 14);
 		panPrestamosCrearPrestamo.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("      Sí        No");
+		JLabel lblNewLabel_7 = new JLabel("      Sí       No");
 		lblNewLabel_7.setBounds(10, 160, 79, 14);
 		panPrestamosCrearPrestamo.add(lblNewLabel_7);
 		
@@ -243,7 +245,7 @@ public class VentanaMain {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnDevolvertems.setBounds(457, 261, 107, 33);
+		btnDevolvertems.setBounds(439, 261, 125, 33);
 		panPrestamosRetornarItems.add(btnDevolvertems);
 		
 		JComboBox comboBox_1 = new JComboBox();
@@ -294,13 +296,26 @@ public class VentanaMain {
 		lblNewLabel_14.setBounds(37, 184, 507, 14);
 		panPrestamosFinalizar.add(lblNewLabel_14);
 		
-		JButton btnNewButton_1 = new JButton("Finalizar préstamo");
-		btnNewButton_1.setBounds(221, 250, 128, 23);
-		panPrestamosFinalizar.add(btnNewButton_1);
+		btnFinPres = new JButton("Finalizar préstamo");
+		btnFinPres.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chckbxFinPres.setSelected(false);
+				btnFinPres.setEnabled(false);
+			}
+		});
+		btnFinPres.setEnabled(false);
+
+		btnFinPres.setBounds(214, 249, 143, 23);
+		panPrestamosFinalizar.add(btnFinPres);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Entiendo y deseo continuar");
-		chckbxNewCheckBox.setBounds(203, 205, 157, 23);
-		panPrestamosFinalizar.add(chckbxNewCheckBox);
+		chckbxFinPres = new JCheckBox("Entiendo y deseo continuar");
+		chckbxFinPres.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnFinPres.setEnabled(true);
+			}
+		});
+		chckbxFinPres.setBounds(195, 206, 182, 23);
+		panPrestamosFinalizar.add(chckbxFinPres);
 		
 		JPanel panelAdmin = new JPanel();
 		tabPrincipal.addTab("Administrador", null, panelAdmin, null);
@@ -321,25 +336,16 @@ public class VentanaMain {
 		
 		JButton btnPersonasAgregar = new JButton("Agregar");
 		btnPersonasAgregar.setBounds(55, 271, 89, 23);
-		btnPersonasAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearUsuario dialogo = new CrearUsuario();
-				dialogo.setVisible(true);
-			}
-		});
+
 		panAdminPersonas.add(btnPersonasAgregar);
 		
 		JButton btnPersonasVerModificar = new JButton("Ver/Modificar");
-		btnPersonasVerModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VerModificarUsuario dialogo = new VerModificarUsuario();
-				dialogo.setVisible(true);
-			}
-		});
+
 		btnPersonasVerModificar.setBounds(154, 271, 116, 23);
 		panAdminPersonas.add(btnPersonasVerModificar);
 		
 		JButton btnPersonasBorrar = new JButton("Borrar");
+
 		btnPersonasBorrar.setBounds(420, 271, 89, 23);
 		panAdminPersonas.add(btnPersonasBorrar);
 		
