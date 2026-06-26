@@ -22,15 +22,23 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
 
 public class VentanaMain {
 
-	private JFrame frame;
+	private JFrame framePrincipal;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTable tableReportesUsuario;
+	private JTable tableReportesItem;
+	private JTable tableReportesCategoria;
+	private JTable tableReportesTipo;
+	private JTextField textField;
+	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -40,7 +48,7 @@ public class VentanaMain {
 			public void run() {
 				try {
 					VentanaMain window = new VentanaMain();
-					window.frame.setVisible(true);
+					window.framePrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,40 +67,88 @@ public class VentanaMain {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		framePrincipal = new JFrame();
+		framePrincipal.setBounds(100, 100, 600, 400);
+		framePrincipal.setLocationRelativeTo(null);
+		framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		framePrincipal.getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		JTabbedPane tabPrincipal = new JTabbedPane(JTabbedPane.TOP);
+		framePrincipal.getContentPane().add(tabPrincipal, BorderLayout.CENTER);
 		
 		JPanel panelReportes = new JPanel();
-		tabbedPane.addTab("Reportes", null, panelReportes, null);
+		tabPrincipal.addTab("Reportes", null, panelReportes, null);
 		panelReportes.setLayout(new BorderLayout(0, 0));
 		
+		JTabbedPane tabReportes = new JTabbedPane(JTabbedPane.TOP);
+		panelReportes.add(tabReportes, BorderLayout.CENTER);
+		
+		JPanel panelReportesUsuario = new JPanel();
+		tabReportes.addTab("Por usuario", null, panelReportesUsuario, null);
+		panelReportesUsuario.setLayout(null);
+		
+		JScrollPane scrollReportesUsuario = new JScrollPane();
+		scrollReportesUsuario.setBounds(10, 11, 554, 283);
+		panelReportesUsuario.add(scrollReportesUsuario);
+		
+		tableReportesUsuario = new JTable();
+		scrollReportesUsuario.setViewportView(tableReportesUsuario);
+		
+		JPanel panelReportesItem = new JPanel();
+		tabReportes.addTab("Por ítem", null, panelReportesItem, null);
+		panelReportesItem.setLayout(null);
+		
+		JScrollPane scrollReportesItem = new JScrollPane();
+		scrollReportesItem.setBounds(10, 11, 554, 283);
+		panelReportesItem.add(scrollReportesItem);
+		
+		tableReportesItem = new JTable();
+		scrollReportesItem.setViewportView(tableReportesItem);
+		
+		JPanel panelReportesCategoria = new JPanel();
+		tabReportes.addTab("Por categoría", null, panelReportesCategoria, null);
+		panelReportesCategoria.setLayout(null);
+		
+		JScrollPane scrollReportesCategoria = new JScrollPane();
+		scrollReportesCategoria.setBounds(10, 11, 554, 283);
+		panelReportesCategoria.add(scrollReportesCategoria);
+		
+		tableReportesCategoria = new JTable();
+		scrollReportesCategoria.setViewportView(tableReportesCategoria);
+		
+		JPanel panelReportesTipo = new JPanel();
+		tabReportes.addTab("Por tipo", null, panelReportesTipo, null);
+		panelReportesTipo.setLayout(null);
+		
+		JScrollPane scrollReportesTipo = new JScrollPane();
+		scrollReportesTipo.setBounds(10, 11, 554, 283);
+		panelReportesTipo.add(scrollReportesTipo);
+		
+		tableReportesTipo = new JTable();
+		scrollReportesTipo.setViewportView(tableReportesTipo);
+		
 		JPanel panelPrestamos = new JPanel();
-		tabbedPane.addTab("Préstamos", null, panelPrestamos, null);
+		tabPrincipal.addTab("Préstamos", null, panelPrestamos, null);
 		panelPrestamos.setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-		panelPrestamos.add(tabbedPane_2, BorderLayout.CENTER);
+		JTabbedPane tabPrestamos = new JTabbedPane(JTabbedPane.TOP);
+		panelPrestamos.add(tabPrestamos, BorderLayout.CENTER);
 		
-		JPanel panPresCrear = new JPanel();
-		tabbedPane_2.addTab("Crear préstamo", null, panPresCrear, null);
-		panPresCrear.setLayout(null);
+		JPanel panPrestamosCrearPrestamo = new JPanel();
+		tabPrestamos.addTab("Crear préstamo", null, panPrestamosCrearPrestamo, null);
+		panPrestamosCrearPrestamo.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("A nombre de: ");
 		lblNewLabel_1.setBounds(10, 11, 79, 14);
-		panPresCrear.add(lblNewLabel_1);
+		panPrestamosCrearPrestamo.add(lblNewLabel_1);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(99, 7, 465, 22);
-		panPresCrear.add(comboBox);
+		panPrestamosCrearPrestamo.add(comboBox);
 		
 		JLabel lblNewLabel_2 = new JLabel("Se prestará:");
 		lblNewLabel_2.setBounds(10, 49, 79, 14);
-		panPresCrear.add(lblNewLabel_2);
+		panPrestamosCrearPrestamo.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Crear préstamo");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -100,51 +156,87 @@ public class VentanaMain {
 			}
 		});
 		btnNewButton.setBounds(457, 261, 107, 33);
-		panPresCrear.add(btnNewButton);
+		panPrestamosCrearPrestamo.add(btnNewButton);
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
 		scrollPane_4.setBounds(99, 49, 465, 201);
-		panPresCrear.add(scrollPane_4);
+		panPrestamosCrearPrestamo.add(scrollPane_4);
 		
 		JList list = new JList();
 		scrollPane_4.setViewportView(list);
 		
 		JLabel lblNewLabel_4 = new JLabel("Incluir alerta?");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setBounds(10, 114, 79, 14);
-		panPresCrear.add(lblNewLabel_4);
+		panPrestamosCrearPrestamo.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Nota: Esto no");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setBounds(10, 128, 79, 14);
-		panPresCrear.add(lblNewLabel_5);
+		panPrestamosCrearPrestamo.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("es editable");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_6.setBounds(10, 139, 79, 14);
-		panPresCrear.add(lblNewLabel_6);
+		panPrestamosCrearPrestamo.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("  Sí            No");
-		lblNewLabel_7.setBounds(10, 174, 79, 14);
-		panPresCrear.add(lblNewLabel_7);
+		JLabel lblNewLabel_7 = new JLabel("      Sí        No");
+		lblNewLabel_7.setBounds(10, 160, 79, 14);
+		panPrestamosCrearPrestamo.add(lblNewLabel_7);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
-		buttonGroup.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setBounds(10, 195, 21, 23);
-		panPresCrear.add(rdbtnNewRadioButton);
+		JRadioButton rdbtnIncluirAlertaSi = new JRadioButton("");
+		buttonGroup.add(rdbtnIncluirAlertaSi);
+		rdbtnIncluirAlertaSi.setBounds(20, 181, 21, 23);
+		panPrestamosCrearPrestamo.add(rdbtnIncluirAlertaSi);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("");
-		buttonGroup.add(rdbtnNewRadioButton_1);
-		rdbtnNewRadioButton_1.setSelected(true);
-		rdbtnNewRadioButton_1.setBounds(55, 195, 21, 23);
-		panPresCrear.add(rdbtnNewRadioButton_1);
+		JRadioButton rdbtnIncluirAlertaNo = new JRadioButton("");
+		buttonGroup.add(rdbtnIncluirAlertaNo);
+		rdbtnIncluirAlertaNo.setSelected(true);
+		rdbtnIncluirAlertaNo.setBounds(55, 181, 21, 23);
+		panPrestamosCrearPrestamo.add(rdbtnIncluirAlertaNo);
 		
-		JPanel panPresRetornarItems = new JPanel();
-		tabbedPane_2.addTab("Retornar ítems", null, panPresRetornarItems, null);
-		panPresRetornarItems.setLayout(null);
+		JLabel lblNewLabel_8 = new JLabel("Repetir?");
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_8.setBounds(10, 229, 79, 14);
+		panPrestamosCrearPrestamo.add(lblNewLabel_8);
+		
+		JRadioButton rdbtnRepetirSi = new JRadioButton("");
+		buttonGroup_1.add(rdbtnRepetirSi);
+		rdbtnRepetirSi.setBounds(20, 271, 21, 23);
+		panPrestamosCrearPrestamo.add(rdbtnRepetirSi);
+		
+		JRadioButton rdbtnRepetirNo = new JRadioButton("");
+		buttonGroup_1.add(rdbtnRepetirNo);
+		rdbtnRepetirNo.setSelected(true);
+		rdbtnRepetirNo.setBounds(55, 271, 21, 23);
+		panPrestamosCrearPrestamo.add(rdbtnRepetirNo);
+		
+		JLabel lblNewLabel_7_1 = new JLabel("      Sí        No");
+		lblNewLabel_7_1.setBounds(10, 250, 79, 14);
+		panPrestamosCrearPrestamo.add(lblNewLabel_7_1);
+		
+		JLabel lblNewLabel_9 = new JLabel("Cada:");
+		lblNewLabel_9.setBounds(109, 270, 34, 14);
+		panPrestamosCrearPrestamo.add(lblNewLabel_9);
+		
+		textField = new JTextField();
+		textField.setBounds(146, 267, 95, 20);
+		panPrestamosCrearPrestamo.add(textField);
+		textField.setColumns(10);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Minutos", "Horas"}));
+		comboBox_2.setBounds(251, 266, 125, 22);
+		panPrestamosCrearPrestamo.add(comboBox_2);
+		
+		JPanel panPrestamosRetornarItems = new JPanel();
+		tabPrestamos.addTab("Retornar ítems", null, panPrestamosRetornarItems, null);
+		panPrestamosRetornarItems.setLayout(null);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Del préstamo:");
 		lblNewLabel_1_1.setBounds(10, 11, 79, 14);
-		panPresRetornarItems.add(lblNewLabel_1_1);
+		panPrestamosRetornarItems.add(lblNewLabel_1_1);
 		
 		JButton btnDevolvertems = new JButton("Devolver ítems");
 		btnDevolvertems.addActionListener(new ActionListener() {
@@ -152,61 +244,108 @@ public class VentanaMain {
 			}
 		});
 		btnDevolvertems.setBounds(457, 261, 107, 33);
-		panPresRetornarItems.add(btnDevolvertems);
+		panPrestamosRetornarItems.add(btnDevolvertems);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(99, 7, 465, 22);
-		panPresRetornarItems.add(comboBox_1);
+		panPrestamosRetornarItems.add(comboBox_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Se devolverá:");
 		lblNewLabel_3.setBounds(10, 49, 79, 14);
-		panPresRetornarItems.add(lblNewLabel_3);
+		panPrestamosRetornarItems.add(lblNewLabel_3);
 		
 		JScrollPane scrollPane_5 = new JScrollPane();
 		scrollPane_5.setBounds(99, 49, 465, 201);
-		panPresRetornarItems.add(scrollPane_5);
+		panPrestamosRetornarItems.add(scrollPane_5);
 		
 		JList list_1 = new JList();
 		scrollPane_5.setViewportView(list_1);
 		
-		JPanel panPresFin = new JPanel();
-		tabbedPane_2.addTab("Finalizar préstamo", null, panPresFin, null);
+		JPanel panPrestamosFinalizar = new JPanel();
+		tabPrestamos.addTab("Finalizar préstamo", null, panPrestamosFinalizar, null);
+		panPrestamosFinalizar.setLayout(null);
+		
+		JLabel lblNewLabel_10 = new JLabel("Elija el préstamo a finalizar:");
+		lblNewLabel_10.setBounds(10, 11, 136, 14);
+		panPrestamosFinalizar.add(lblNewLabel_10);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(10, 36, 554, 22);
+		panPrestamosFinalizar.add(comboBox_3);
+		
+		JLabel lblNewLabel_11 = new JLabel("Advertencia");
+		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_11.setBounds(239, 115, 87, 22);
+		panPrestamosFinalizar.add(lblNewLabel_11);
+		
+		JLabel lblNewLabel_12 = new JLabel("Una vez se finalice el préstamo, todos los ítems incluidos en el mismo quedarán disponibles para futuros");
+		lblNewLabel_12.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_12.setBounds(37, 148, 507, 14);
+		panPrestamosFinalizar.add(lblNewLabel_12);
+		
+		JLabel lblNewLabel_13 = new JLabel("préstamos, así como su alerta correspondiente se desactivará. Se recomienda ejecutar esta acción solo");
+		lblNewLabel_13.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_13.setBounds(37, 166, 509, 14);
+		panPrestamosFinalizar.add(lblNewLabel_13);
+		
+		JLabel lblNewLabel_14 = new JLabel("en préstamos vacíos. Los préstamos finalizados no se pueden recuperar.");
+		lblNewLabel_14.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_14.setBounds(37, 184, 507, 14);
+		panPrestamosFinalizar.add(lblNewLabel_14);
+		
+		JButton btnNewButton_1 = new JButton("Finalizar préstamo");
+		btnNewButton_1.setBounds(221, 250, 128, 23);
+		panPrestamosFinalizar.add(btnNewButton_1);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Entiendo y deseo continuar");
+		chckbxNewCheckBox.setBounds(203, 205, 157, 23);
+		panPrestamosFinalizar.add(chckbxNewCheckBox);
 		
 		JPanel panelAdmin = new JPanel();
-		tabbedPane.addTab("Administrador", null, panelAdmin, null);
+		tabPrincipal.addTab("Administrador", null, panelAdmin, null);
 		panelAdmin.setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
-		panelAdmin.add(tabbedPane_1, BorderLayout.CENTER);
+		JTabbedPane tabAdmin = new JTabbedPane(JTabbedPane.TOP);
+		panelAdmin.add(tabAdmin, BorderLayout.CENTER);
 		
-		JPanel panAdmPers = new JPanel();
-		tabbedPane_1.addTab("Personas", null, panAdmPers, null);
-		panAdmPers.setLayout(null);
+		JPanel panAdminPersonas = new JPanel();
+		tabAdmin.addTab("Personas", null, panAdminPersonas, null);
+		panAdminPersonas.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Personas Registradas");
-		lblNewLabel.setBounds(213, 11, 148, 25);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 11, 554, 25);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		panAdmPers.add(lblNewLabel);
+		panAdminPersonas.add(lblNewLabel);
 		
 		JButton btnPersonasAgregar = new JButton("Agregar");
 		btnPersonasAgregar.setBounds(55, 271, 89, 23);
 		btnPersonasAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CrearUsuario dialogo = new CrearUsuario();
+				dialogo.setVisible(true);
 			}
 		});
-		panAdmPers.add(btnPersonasAgregar);
+		panAdminPersonas.add(btnPersonasAgregar);
 		
 		JButton btnPersonasVerModificar = new JButton("Ver/Modificar");
+		btnPersonasVerModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerModificarUsuario dialogo = new VerModificarUsuario();
+				dialogo.setVisible(true);
+			}
+		});
 		btnPersonasVerModificar.setBounds(154, 271, 116, 23);
-		panAdmPers.add(btnPersonasVerModificar);
+		panAdminPersonas.add(btnPersonasVerModificar);
 		
 		JButton btnPersonasBorrar = new JButton("Borrar");
 		btnPersonasBorrar.setBounds(420, 271, 89, 23);
-		panAdmPers.add(btnPersonasBorrar);
+		panAdminPersonas.add(btnPersonasBorrar);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 35, 554, 225);
-		panAdmPers.add(scrollPane);
+		panAdminPersonas.add(scrollPane);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -225,31 +364,31 @@ public class VentanaMain {
 		});
 		scrollPane.setViewportView(table);
 		
-		JPanel panAdmItems = new JPanel();
-		tabbedPane_1.addTab("Ítems", null, panAdmItems, null);
-		panAdmItems.setLayout(null);
+		JPanel panAdminItems = new JPanel();
+		tabAdmin.addTab("Ítems", null, panAdminItems, null);
+		panAdminItems.setLayout(null);
 		
 		JLabel lbltemsRegistrados = new JLabel("Ítems Registrados");
 		lbltemsRegistrados.setHorizontalAlignment(SwingConstants.CENTER);
 		lbltemsRegistrados.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbltemsRegistrados.setBounds(220, 11, 148, 25);
-		panAdmItems.add(lbltemsRegistrados);
+		lbltemsRegistrados.setBounds(10, 11, 554, 25);
+		panAdminItems.add(lbltemsRegistrados);
 		
 		JButton btnPersonasAgregar_1 = new JButton("Agregar");
 		btnPersonasAgregar_1.setBounds(55, 271, 89, 23);
-		panAdmItems.add(btnPersonasAgregar_1);
+		panAdminItems.add(btnPersonasAgregar_1);
 		
 		JButton btnPersonasVerModificar_1 = new JButton("Ver/Modificar");
 		btnPersonasVerModificar_1.setBounds(154, 271, 116, 23);
-		panAdmItems.add(btnPersonasVerModificar_1);
+		panAdminItems.add(btnPersonasVerModificar_1);
 		
 		JButton btnPersonasBorrar_1 = new JButton("Borrar");
 		btnPersonasBorrar_1.setBounds(420, 271, 89, 23);
-		panAdmItems.add(btnPersonasBorrar_1);
+		panAdminItems.add(btnPersonasBorrar_1);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(10, 35, 554, 225);
-		panAdmItems.add(scrollPane_1);
+		panAdminItems.add(scrollPane_1);
 		
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
@@ -268,9 +407,9 @@ public class VentanaMain {
 		});
 		scrollPane_1.setViewportView(table_1);
 		
-		JPanel panAdmCateg = new JPanel();
-		tabbedPane_1.addTab("Categorías", null, panAdmCateg, null);
-		panAdmCateg.setLayout(null);
+		JPanel panAdminCategorias = new JPanel();
+		tabAdmin.addTab("Categorías", null, panAdminCategorias, null);
+		panAdminCategorias.setLayout(null);
 		
 		JButton btnPersonasAgregar_1_1 = new JButton("Agregar");
 		btnPersonasAgregar_1_1.addActionListener(new ActionListener() {
@@ -278,19 +417,19 @@ public class VentanaMain {
 			}
 		});
 		btnPersonasAgregar_1_1.setBounds(55, 271, 89, 23);
-		panAdmCateg.add(btnPersonasAgregar_1_1);
+		panAdminCategorias.add(btnPersonasAgregar_1_1);
 		
 		JButton btnPersonasVerModificar_1_1 = new JButton("Ver/Modificar");
 		btnPersonasVerModificar_1_1.setBounds(154, 271, 116, 23);
-		panAdmCateg.add(btnPersonasVerModificar_1_1);
+		panAdminCategorias.add(btnPersonasVerModificar_1_1);
 		
 		JButton btnPersonasBorrar_1_1 = new JButton("Borrar");
 		btnPersonasBorrar_1_1.setBounds(420, 271, 89, 23);
-		panAdmCateg.add(btnPersonasBorrar_1_1);
+		panAdminCategorias.add(btnPersonasBorrar_1_1);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(10, 11, 554, 249);
-		panAdmCateg.add(scrollPane_2);
+		panAdminCategorias.add(scrollPane_2);
 		
 		table_2 = new JTable();
 		table_2.setModel(new DefaultTableModel(
@@ -309,25 +448,25 @@ public class VentanaMain {
 		});
 		scrollPane_2.setViewportView(table_2);
 		
-		JPanel panAdmTipos = new JPanel();
-		tabbedPane_1.addTab("Tipos", null, panAdmTipos, null);
-		panAdmTipos.setLayout(null);
+		JPanel panAdminTipos = new JPanel();
+		tabAdmin.addTab("Tipos", null, panAdminTipos, null);
+		panAdminTipos.setLayout(null);
 		
 		JButton btnPersonasAgregar_1_1_1 = new JButton("Agregar");
 		btnPersonasAgregar_1_1_1.setBounds(55, 271, 89, 23);
-		panAdmTipos.add(btnPersonasAgregar_1_1_1);
+		panAdminTipos.add(btnPersonasAgregar_1_1_1);
 		
 		JButton btnPersonasVerModificar_1_1_1 = new JButton("Ver/Modificar");
 		btnPersonasVerModificar_1_1_1.setBounds(154, 271, 116, 23);
-		panAdmTipos.add(btnPersonasVerModificar_1_1_1);
+		panAdminTipos.add(btnPersonasVerModificar_1_1_1);
 		
 		JButton btnPersonasBorrar_1_1_1 = new JButton("Borrar");
 		btnPersonasBorrar_1_1_1.setBounds(420, 271, 89, 23);
-		panAdmTipos.add(btnPersonasBorrar_1_1_1);
+		panAdminTipos.add(btnPersonasBorrar_1_1_1);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
 		scrollPane_3.setBounds(10, 11, 554, 249);
-		panAdmTipos.add(scrollPane_3);
+		panAdminTipos.add(scrollPane_3);
 		
 		table_3 = new JTable();
 		table_3.setModel(new DefaultTableModel(
