@@ -17,6 +17,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
+import javax.swing.JToggleButton;
+import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class VentanaMain {
 
@@ -25,6 +30,7 @@ public class VentanaMain {
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -68,6 +74,103 @@ public class VentanaMain {
 		JPanel panelPrestamos = new JPanel();
 		tabbedPane.addTab("Préstamos", null, panelPrestamos, null);
 		panelPrestamos.setLayout(new BorderLayout(0, 0));
+		
+		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		panelPrestamos.add(tabbedPane_2, BorderLayout.CENTER);
+		
+		JPanel panPresCrear = new JPanel();
+		tabbedPane_2.addTab("Crear préstamo", null, panPresCrear, null);
+		panPresCrear.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("A nombre de: ");
+		lblNewLabel_1.setBounds(10, 11, 79, 14);
+		panPresCrear.add(lblNewLabel_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(99, 7, 465, 22);
+		panPresCrear.add(comboBox);
+		
+		JLabel lblNewLabel_2 = new JLabel("Se prestará:");
+		lblNewLabel_2.setBounds(10, 49, 79, 14);
+		panPresCrear.add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("Crear préstamo");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(457, 261, 107, 33);
+		panPresCrear.add(btnNewButton);
+		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBounds(99, 49, 465, 201);
+		panPresCrear.add(scrollPane_4);
+		
+		JList list = new JList();
+		scrollPane_4.setViewportView(list);
+		
+		JLabel lblNewLabel_4 = new JLabel("Incluir alerta?");
+		lblNewLabel_4.setBounds(10, 114, 79, 14);
+		panPresCrear.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Nota: Esto no");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_5.setBounds(10, 128, 79, 14);
+		panPresCrear.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("es editable");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_6.setBounds(10, 139, 79, 14);
+		panPresCrear.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("  Sí            No");
+		lblNewLabel_7.setBounds(10, 174, 79, 14);
+		panPresCrear.add(lblNewLabel_7);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
+		buttonGroup.add(rdbtnNewRadioButton);
+		rdbtnNewRadioButton.setBounds(10, 195, 21, 23);
+		panPresCrear.add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("");
+		buttonGroup.add(rdbtnNewRadioButton_1);
+		rdbtnNewRadioButton_1.setSelected(true);
+		rdbtnNewRadioButton_1.setBounds(55, 195, 21, 23);
+		panPresCrear.add(rdbtnNewRadioButton_1);
+		
+		JPanel panPresRetornarItems = new JPanel();
+		tabbedPane_2.addTab("Retornar ítems", null, panPresRetornarItems, null);
+		panPresRetornarItems.setLayout(null);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Del préstamo:");
+		lblNewLabel_1_1.setBounds(10, 11, 79, 14);
+		panPresRetornarItems.add(lblNewLabel_1_1);
+		
+		JButton btnDevolvertems = new JButton("Devolver ítems");
+		btnDevolvertems.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnDevolvertems.setBounds(457, 261, 107, 33);
+		panPresRetornarItems.add(btnDevolvertems);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(99, 7, 465, 22);
+		panPresRetornarItems.add(comboBox_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("Se devolverá:");
+		lblNewLabel_3.setBounds(10, 49, 79, 14);
+		panPresRetornarItems.add(lblNewLabel_3);
+		
+		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5.setBounds(99, 49, 465, 201);
+		panPresRetornarItems.add(scrollPane_5);
+		
+		JList list_1 = new JList();
+		scrollPane_5.setViewportView(list_1);
+		
+		JPanel panPresFin = new JPanel();
+		tabbedPane_2.addTab("Finalizar préstamo", null, panPresFin, null);
 		
 		JPanel panelAdmin = new JPanel();
 		tabbedPane.addTab("Administrador", null, panelAdmin, null);
