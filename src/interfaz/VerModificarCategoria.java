@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class AgregarCategoria extends JDialog {
+public class VerModificarCategoria extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
@@ -20,7 +20,7 @@ public class AgregarCategoria extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AgregarCategoria dialog = new AgregarCategoria();
+			VerModificarCategoria dialog = new VerModificarCategoria();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -31,25 +31,23 @@ public class AgregarCategoria extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AgregarCategoria() {
+	public VerModificarCategoria() {
 		setBounds(100, 100, 262, 124);
 		getContentPane().setLayout(null);
-		setLocationRelativeTo(null);
-		{
-			JLabel lblNewLabel = new JLabel("Nombre");
-			lblNewLabel.setBounds(10, 11, 75, 14);
-			getContentPane().add(lblNewLabel);
-		}
-		{
-			textField = new JTextField();
-			textField.setBounds(56, 8, 184, 20);
-			getContentPane().add(textField);
-			textField.setColumns(10);
-		}
 		
-		JButton btnNewButton = new JButton("Crear");
-		btnNewButton.setBounds(77, 51, 89, 23);
-		getContentPane().add(btnNewButton);
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.setBounds(77, 54, 89, 23);
+		getContentPane().add(btnEditar);
+		
+		JLabel lblNewLabel = new JLabel("Nombre");
+		lblNewLabel.setBounds(10, 14, 75, 14);
+		getContentPane().add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(56, 11, 184, 20);
+		getContentPane().add(textField);
+		setLocationRelativeTo(null);;
 	}
 
 }

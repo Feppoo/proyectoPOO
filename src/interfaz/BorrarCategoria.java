@@ -8,19 +8,18 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-public class AgregarCategoria extends JDialog {
+public class BorrarCategoria extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			AgregarCategoria dialog = new AgregarCategoria();
+			BorrarCategoria dialog = new BorrarCategoria();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -31,24 +30,17 @@ public class AgregarCategoria extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AgregarCategoria() {
-		setBounds(100, 100, 262, 124);
+	public BorrarCategoria() {
+		setBounds(100, 100, 200, 200);
 		getContentPane().setLayout(null);
-		setLocationRelativeTo(null);
-		{
-			JLabel lblNewLabel = new JLabel("Nombre");
-			lblNewLabel.setBounds(10, 11, 75, 14);
-			getContentPane().add(lblNewLabel);
-		}
-		{
-			textField = new JTextField();
-			textField.setBounds(56, 8, 184, 20);
-			getContentPane().add(textField);
-			textField.setColumns(10);
-		}
 		
-		JButton btnNewButton = new JButton("Crear");
-		btnNewButton.setBounds(77, 51, 89, 23);
+		JLabel lblNewLabel = new JLabel("Se borrará la categoría");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 65, 164, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.setBounds(45, 90, 89, 23);
 		getContentPane().add(btnNewButton);
 	}
 
